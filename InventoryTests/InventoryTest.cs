@@ -10,6 +10,7 @@ using NUnit.Framework;
 namespace InventoryTests
 {
     [TestFixture]
+    [Category("Inventory")]
     class InventoryTest : BddTest.BaseTest<InventoryAggregate>
     {
         private Guid _testId;
