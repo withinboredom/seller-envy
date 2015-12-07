@@ -1,0 +1,7 @@
+NUGET
+  remote: https://nuget.org/api/v2
+  specs:
+    Nancy (1.4.1)
+    Nancy.Hosting.Aspnet (1.4.1)
+      Nancy (>= 1.4.1)
+    NUnit (3.0.1) - framework: >= net46

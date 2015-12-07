@@ -1,0 +1,5 @@
+source https://www.nuget.org/api/v2/
+
+nuget Nancy 1.4.1
+nuget Nancy.Hosting.Aspnet 1.4.1
+nuget NUnit 3.0.1 framework: >= net46
