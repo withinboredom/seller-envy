@@ -9,7 +9,6 @@ using Objects;
 
 namespace BddTest
 {
-    [Category("Skeleton")]
     public class BaseTest<TAggregate> where TAggregate : Aggregate, new()
     {
         private TAggregate _sut;

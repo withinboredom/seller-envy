@@ -11,7 +11,7 @@ namespace InventoryTests
 {
     [TestFixture]
     [Category("Inventory")]
-    class InventoryTest : BddTest.BaseTest<InventoryAggregate>
+    internal class InventoryTest : BddTest.BaseTest<InventoryAggregate>
     {
         private Guid _testId;
         private Guid _tenantId;
