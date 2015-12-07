@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2CBDDC08-4EA0-49A0-B365-2B51EB204A6F}</ProjectGuid>
+    <ProjectGuid>{510A14A3-784F-4CF6-99F8-8FFC9BE63A86}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>InventoryTests</RootNamespace>
-    <AssemblyName>InventoryTests</AssemblyName>
+    <RootNamespace>ProjectorTests</RootNamespace>
+    <AssemblyName>ProjectorTests</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -51,14 +51,10 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="InventoryTest.cs" />
+    <Compile Include="Projector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BddTest\BddTest.csproj">
-      <Project>{0e6ebbc0-9897-442e-8713-6397286107fb}</Project>
-      <Name>BddTest</Name>
-    </ProjectReference>
     <ProjectReference Include="..\InventoryDomain\InventoryDomain.csproj">
       <Project>{efc877d1-3459-40d8-9ade-f8b19bca7d09}</Project>
       <Name>InventoryDomain</Name>
@@ -68,12 +64,13 @@
       <Name>Inventory</Name>
     </ProjectReference>
     <ProjectReference Include="..\Objects\Objects.csproj">
-      <Project>{3c59994a-407d-4305-a4be-3498eeea74f9}</Project>
+      <Project>{3C59994A-407D-4305-A4BE-3498EEEA74F9}</Project>
       <Name>Objects</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="paket.references" />
+    <ProjectReference Include="..\Projector\Projector.csproj">
+      <Project>{5b697369-72f1-46f5-ab41-23638bb971fd}</Project>
+      <Name>Projector</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
@@ -102,7 +99,6 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <Import Project="..\.paket\paket.targets" />
   <Choose>
     <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.6'">
       <ItemGroup>

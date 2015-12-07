@@ -40,7 +40,7 @@ namespace InventoryDomain
             } 
         }
 
-        private Guid _tenant;
+        public Guid Tenant { get; internal set; }
         private readonly ConcurrentBag<Product> _inventory;
 
         public InventoryAggregate()
@@ -60,7 +60,7 @@ namespace InventoryDomain
 
         public void Apply(InventoryCenterCreated e)
         {
-            _tenant = e.Tenant;
+            Tenant = e.Tenant;
         }
 
         public IEnumerable Handle(AddItemToInventory c)

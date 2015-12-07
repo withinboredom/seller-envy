@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Aggregate.cs" />
     <Compile Include="IApplyEvent.cs" />
+    <Compile Include="ICommand.cs" />
     <Compile Include="IHandleCommand.cs" />
     <Compile Include="ISubscribeTo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

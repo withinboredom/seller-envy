@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Objects;
 
 namespace Inventory
 {
     /// <summary>
     /// Creates a new inventory center for a tenant
     /// </summary>
-    public class CreateInventoryCenter
+    public class CreateInventoryCenter : ICommand
     {
         /// <summary>
         /// The id of the center
@@ -48,7 +49,7 @@ namespace Inventory
     /// <summary>
     /// Adds a new item into inventory
     /// </summary>
-    public class AddItemToInventory
+    public class AddItemToInventory : ICommand
     {
         /// <summary>
         /// The inventory center id
@@ -94,7 +95,7 @@ namespace Inventory
     /// <summary>
     /// Reserve an item in the inventory center
     /// </summary>
-    public class ReserveItem
+    public class ReserveItem : ICommand
     {
         /// <summary>
         /// The inventory center id
@@ -120,7 +121,7 @@ namespace Inventory
     /// <summary>
     /// Remove a reserved item from inventory
     /// </summary>
-    public class RemoveItem
+    public class RemoveItem : ICommand
     {
         /// <summary>
         /// The center's id
