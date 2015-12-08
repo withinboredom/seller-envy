@@ -28,7 +28,7 @@ namespace Projector
 
         public async Task SendCommand<TAggregate, TCommand>(TCommand command)
             where TAggregate : Aggregate, new()
-            where TCommand : ICommand
+            where TCommand : ICommandEvent
         {
             var agg = await GetAggregate<TAggregate>(command.Id);
 

@@ -29,9 +29,11 @@ namespace Objects
                 throw new InvalidOperationException(
                     $"Aggregate {GetType().Name} does not know how to apply event {ev.GetType().Name}");
             }
-
-            applier.Apply(ev);
-            EventsLoaded++;
+            else
+            {
+                applier.Apply(ev);
+                EventsLoaded++;
+            }
         }
     }
 }

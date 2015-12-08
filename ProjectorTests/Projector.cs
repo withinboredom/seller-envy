@@ -31,6 +31,18 @@ namespace ProjectorTests
                 Tenant = tenant
             }).Wait();
 
+            projector.SendCommand<InventoryAggregate, AddItemToInventory>(new AddItemToInventory
+            {
+                Condition = ProductCondition.New,
+                Product = Guid.NewGuid(),
+                Id = Id,
+                Location = Guid.NewGuid(),
+                Quantity = 5,
+                ProductIdType = ProductIdType.Upc,
+                Cost = 200,
+                ProductId = "1234"
+            }).Wait();
+
             var agg = projector.GetAggregate<InventoryAggregate>(Id);
             agg.Wait();
 

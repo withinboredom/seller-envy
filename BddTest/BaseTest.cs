@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
 using NUnit.Framework;
+using NUnit.Framework.Internal.Commands;
 using Objects;
 
 namespace BddTest
@@ -126,11 +127,21 @@ namespace BddTest
 
             if (handler == null)
             {
-                throw new CommandHandlerNotDefinedException(
-                    $"Aggregate {_sut.GetType().Name} does not yet handle command {c.GetType().Name}");
+                var subscriber = _sut as ISubscribeTo<TCommand>;
+                if (subscriber == null)
+                {
+                    throw new CommandHandlerNotDefinedException(
+                        $"Aggregate {_sut.GetType().Name} does not yet handle command {c.GetType().Name}");
+                }
+                else
+                {
+                    return subscriber.Handle(c);
+                }
             }
-
-            return handler.Handle(c);
+            else
+            {
+                return handler.Handle(c);
+            }
         }
 
         private static TAggregate ApplyEvents(TAggregate agg, IEnumerable events)

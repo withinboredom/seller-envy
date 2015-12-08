@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Objects;
 
 namespace Inventory
 {
@@ -119,4 +120,75 @@ namespace Inventory
         /// </summary>
         public List<Guid> Locations { get; set; }
     }
+
+    /// <summary>
+    /// Indicates a location was described
+    /// </summary>
+    public class DescribedLocation
+    {
+        /// <summary>
+        /// The id of the location
+        /// </summary>
+        public Guid Id { get; set; }
+
+        /// <summary>
+        /// The name of the location
+        /// </summary>
+        public string LocationName { get; set; }
+
+        /// <summary>
+        /// The type of the location
+        /// </summary>
+        public LocationType LocationType { get; set; }
+    }
+
+    /// <summary>
+    /// Indicates that an item was dropped into a location
+    /// </summary>
+    public class AddedItemToLocation : ICommandEvent
+    {
+        /// <summary>
+        /// Location id
+        /// </summary>
+        public Guid Id { get; set; }
+
+        /// <summary>
+        /// Product id
+        /// </summary>
+        public Guid Product { get; set; }
+
+        /// <summary>
+        /// Quantity
+        /// </summary>
+        public int Quantity { get; set; }
+    }
+
+    /// <summary>
+    /// Tell the user a location is over capacity
+    /// </summary>
+    public class LocationOverCapacityAlert : ICommandEvent
+    {
+        public Guid Id { get; set; }
+    }
+
+    /// <summary>
+    /// Indicate the capacity was increased
+    /// </summary>
+    public class IncreaseCapacityAtLocation : ICommandEvent
+    {
+        /// <summary>
+        /// The id of the location
+        /// </summary>
+        public Guid Id { get; set; }
+
+        /// <summary>
+        /// The new capacity
+        /// </summary>
+        public uint NewCapacity { get; set; }
+    }
+
+    /// <summary>
+    /// Indicate a decrease in capacity
+    /// </summary>
+    public class DecreaseCapacityAtLocation : IncreaseCapacityAtLocation { }
 }

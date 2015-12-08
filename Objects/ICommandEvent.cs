@@ -2,7 +2,7 @@
 
 namespace Objects
 {
-    public interface ICommand
+    public interface ICommandEvent
     {
         Guid Id { get; set; } 
     }
