@@ -135,7 +135,7 @@ namespace BddTest
                 }
                 else
                 {
-                    return subscriber.Handle(c);
+                    return subscriber.HandleExternalEvent(c);
                 }
             }
             else

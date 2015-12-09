@@ -8,6 +8,6 @@ namespace Objects
     /// <typeparam name="TEvent">The event to handle</typeparam>
     public interface ISubscribeTo<in TEvent>
     {
-        IEnumerable Handle(TEvent e);
+        IEnumerable HandleExternalEvent(TEvent e);
     }
 }

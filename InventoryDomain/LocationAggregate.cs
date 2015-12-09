@@ -44,7 +44,7 @@ namespace InventoryDomain
             LocationType = e.LocationType;
         }
 
-        public IEnumerable Handle(AddedItemToInventory e)
+        public IEnumerable HandleExternalEvent(AddedItemToInventory e)
         {
             if (e.Quantity + Items.Count > Capacity)
             {
