@@ -18,7 +18,7 @@ namespace Objects
             foreach (var e in events)
                 GetType().GetMethod("ApplyOneEvent")
                     .MakeGenericMethod(e.GetType())
-                    .Invoke(this, new object[] { e });
+                    .Invoke(this, new[] { e });
         }
 
         public void ApplyOneEvent<TEvent>(TEvent ev)

@@ -18,7 +18,7 @@ namespace Projector
     public class EventStoreStuff
     {
         public string ConnectionString = "ConnectTo=tcp://admin:changeit@localhost:1113; HeartBeatTimeout=500";
-        private IEventStoreConnection _connection;
+        private readonly IEventStoreConnection _connection;
 
         public EventStoreStuff()
         {
@@ -30,7 +30,7 @@ namespace Projector
             where TAggregate : Aggregate, new()
             where TCommand : ICommandEvent
         {
-            var agg = await GetAggregate<TAggregate>(command.Id);
+            var agg = await GetAggregate<TAggregate>(command.Id).ConfigureAwait(false);
 
             var handler = agg as IHandleCommand<TCommand>;
 
@@ -46,22 +46,22 @@ namespace Projector
                 var serial = new JsonSerializer();
                 var writer = new JTokenWriter();
                 serial.Serialize(writer, evdo);
-                string s = JsonConvert.SerializeObject(evdo);
+                var s = JsonConvert.SerializeObject(evdo);
 
-                var data = new EventData(Guid.NewGuid(), evdo.GetType().AssemblyQualifiedName, true, System.Text.Encoding.ASCII.GetBytes(s), null);
+                var data = new EventData(Guid.NewGuid(), evdo.GetType().AssemblyQualifiedName, true, Encoding.ASCII.GetBytes(s), null);
 
-                await _connection.AppendToStreamAsync(command.Id.ToString(), agg.EventsLoaded - 1, data);
+                await _connection.AppendToStreamAsync(command.Id.ToString(), agg.EventsLoaded - 1, data).ConfigureAwait(false);
             }
         }
 
-        public async Task<TAggregate> GetAggregate<TAggregate>(Guid Id)
+        public async Task<TAggregate> GetAggregate<TAggregate>(Guid id)
             where TAggregate : Aggregate, new()
         {
             var agg = new TAggregate();
 
             var eventsSlice = await
-                   _connection.ReadStreamEventsForwardAsync(Id.ToString(), 0, 100, true,
-                       new UserCredentials("admin", "changeit"));
+                   _connection.ReadStreamEventsForwardAsync(id.ToString(), 0, 100, true,
+                       new UserCredentials("admin", "changeit")).ConfigureAwait(false);
 
             var events = new ConcurrentDictionary<int, object>();
 
@@ -70,7 +70,7 @@ namespace Projector
                 var serializer = new JsonSerializer();
                 var data = new MemoryStream(ev.Event.Data);
                 var reader = new JsonTextReader(new StreamReader(data));
-                var deserializedEvent = serializer.GetType().GetMethods().First(e => e.Name == "Deserialize" && e.IsGenericMethod == true)
+                var deserializedEvent = serializer.GetType().GetMethods().First(e => e.Name == "Deserialize" && e.IsGenericMethod)
                     .MakeGenericMethod(Type.GetType(ev.Event.EventType))
                     .Invoke(serializer, new object[] { reader });
                 events.AddOrUpdate(ev.OriginalEventNumber, o => deserializedEvent, (i, o) => deserializedEvent);

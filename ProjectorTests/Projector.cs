@@ -11,7 +11,7 @@ using Projector;
 namespace ProjectorTests
 {
     [TestFixture]
-    class ProjectorTest
+    internal class ProjectorTest
     {
         [SetUp]
         public void Setup()
@@ -20,14 +20,14 @@ namespace ProjectorTests
         }
 
         [Test]
-        public void hereWeGo()
+        public void HereWeGo()
         {
             var projector = new EventStoreStuff();
-            Guid Id = Guid.NewGuid();
-            Guid tenant = Guid.NewGuid();
+            var id = Guid.NewGuid();
+            var tenant = Guid.NewGuid();
             projector.SendCommand<InventoryAggregate, CreateInventoryCenter>(new CreateInventoryCenter
             {
-                Id = Id,
+                Id = id,
                 Tenant = tenant
             }).Wait();
 
@@ -35,7 +35,7 @@ namespace ProjectorTests
             {
                 Condition = ProductCondition.New,
                 Product = Guid.NewGuid(),
-                Id = Id,
+                Id = id,
                 Location = Guid.NewGuid(),
                 Quantity = 5,
                 ProductIdType = ProductIdType.Upc,
@@ -43,7 +43,7 @@ namespace ProjectorTests
                 ProductId = "1234"
             }).Wait();
 
-            var agg = projector.GetAggregate<InventoryAggregate>(Id);
+            var agg = projector.GetAggregate<InventoryAggregate>(id);
             agg.Wait();
 
             Assert.AreEqual(tenant, agg.Result.Tenant);
