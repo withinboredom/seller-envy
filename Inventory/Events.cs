@@ -140,6 +140,8 @@ namespace Inventory
         /// The type of the location
         /// </summary>
         public LocationType LocationType { get; set; }
+
+        public Guid Tenant { get; set; }
     }
 
     /// <summary>
@@ -191,4 +193,16 @@ namespace Inventory
     /// Indicate a decrease in capacity
     /// </summary>
     public class DecreaseCapacityAtLocation : IncreaseCapacityAtLocation { }
+
+    public class ProductDescribed : ICommandEvent
+    {
+        public Guid Id { get; set; }
+        public string Title { get; set; }
+        public Dictionary<string, ProductIdType> ProductIds { get; set; }
+        public List<string> Tags { get; set; }
+        public Dictionary<Uri, string> PictureUrls { get; set; }
+        public string Sku { get; set; }
+        public string ProductCategory { get; set; }
+        public Guid Tenant { get; set; }
+    }
 }

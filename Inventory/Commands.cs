@@ -179,6 +179,11 @@ namespace Inventory
         /// The type this location is
         /// </summary>
         public LocationType LocationType { get; set; }
+
+        /// <summary>
+        /// The tenant this location belongs to
+        /// </summary>
+        public Guid Tenant { get; set; }
     }
 
     /// <summary>
@@ -194,5 +199,51 @@ namespace Inventory
         /// The new capacity
         /// </summary>
         public uint ToCapacity { get; set; }
+    }
+
+    /// <summary>
+    /// Describes a product
+    /// </summary>
+    public class DescribeProduct : ICommandEvent
+    {
+        /// <summary>
+        /// The id of the product
+        /// </summary>
+        public Guid Id { get; set; }
+
+        /// <summary>
+        /// The title of the product
+        /// </summary>
+        public string Title { get; set; }
+
+        /// <summary>
+        /// The ways this item can be identified by
+        /// </summary>
+        public Dictionary<string, ProductIdType> ProductIds { get; set; }
+
+        /// <summary>
+        /// The tags to help categorize this product
+        /// </summary>
+        public List<string> Tags { get; set; }
+
+        /// <summary>
+        /// The urls for photos
+        /// </summary>
+        public Dictionary<Uri, string> PictureUrls { get; set; }
+
+        /// <summary>
+        /// The sku of the product
+        /// </summary>
+        public string Sku { get; set; }
+
+        /// <summary>
+        /// The category of the product
+        /// </summary>
+        public string ProductCategory { get; set; }
+
+        /// <summary>
+        /// The tenant this product belongs to
+        /// </summary>
+        public Guid Tenant { get; set; }
     }
 }

@@ -22,6 +22,9 @@ namespace InventoryDomain
         public LocationType LocationType { get; set; }
         public uint Capacity { get; set; }
         public ConcurrentBag<Guid> Items { get; set; }
+        public Guid Tenant { get; set; }
+
+        public int NumberItems => Items.Count;
 
         public LocationAggregate()
         {
@@ -34,7 +37,8 @@ namespace InventoryDomain
             {
                 LocationType = c.LocationType,
                 Id = c.Id,
-                LocationName = c.LocationName
+                LocationName = c.LocationName,
+                Tenant = c.Tenant
             };
         }
 
@@ -42,6 +46,7 @@ namespace InventoryDomain
         {
             Name = e.LocationName;
             LocationType = e.LocationType;
+            Tenant = e.Tenant;
         }
 
         public IEnumerable HandleExternalEvent(AddedItemToInventory e)

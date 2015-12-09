@@ -15,6 +15,7 @@ namespace InventoryTests
     {
         private readonly Guid _id = Guid.NewGuid();
         private const string TestLocation = "test";
+        private readonly Guid _tenant = Guid.NewGuid();
 
         [SetUp]
         public void SetUp()
@@ -27,7 +28,8 @@ namespace InventoryTests
             return new DescribeLocation
             {
                 LocationName = locationName,
-                LocationType = locationType
+                LocationType = locationType,
+                Tenant = _tenant
             };
         }
 
@@ -36,7 +38,8 @@ namespace InventoryTests
             return new DescribedLocation
             {
                 LocationName = locationName,
-                LocationType = locationType
+                LocationType = locationType,
+                Tenant = _tenant
             };
         }
 
