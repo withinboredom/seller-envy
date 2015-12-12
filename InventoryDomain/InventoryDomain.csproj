@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="InventoryAggregate.cs" />
+    <Compile Include="LocationAggregate.cs" />
+    <Compile Include="ProductAggregate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

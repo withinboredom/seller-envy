@@ -1,7 +1,13 @@
-﻿namespace Objects
+﻿using System.Collections;
+
+namespace Objects
 {
+    /// <summary>
+    /// Subscriptions handle events like commands
+    /// </summary>
+    /// <typeparam name="TEvent">The event to handle</typeparam>
     public interface ISubscribeTo<in TEvent>
     {
-        void Handle(TEvent e);
+        IEnumerable HandleExternalEvent(TEvent e);
     }
 }

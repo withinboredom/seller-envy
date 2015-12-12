@@ -11,14 +11,14 @@ namespace Objects
     {
         public int EventsLoaded { get; private set; }
 
-        public Guid Id { get; internal set; }
+        public Guid Id { get; set; }
 
         public void ApplyEvents(IEnumerable events)
         {
             foreach (var e in events)
                 GetType().GetMethod("ApplyOneEvent")
                     .MakeGenericMethod(e.GetType())
-                    .Invoke(this, new object[] { e });
+                    .Invoke(this, new[] { e });
         }
 
         public void ApplyOneEvent<TEvent>(TEvent ev)
@@ -29,9 +29,11 @@ namespace Objects
                 throw new InvalidOperationException(
                     $"Aggregate {GetType().Name} does not know how to apply event {ev.GetType().Name}");
             }
-
-            applier.Apply(ev);
-            EventsLoaded++;
+            else
+            {
+                applier.Apply(ev);
+                EventsLoaded++;
+            }
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Concurrent;
+using System.Data.Common;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
@@ -21,7 +22,7 @@ namespace InventoryDomain
         IApplyEvent<ItemReserved>,
         IApplyEvent<ItemRemoved>
     {
-        private class Location
+        public class Location
         {
             public Guid Id { get; set; }
             public int NumberItems { get; set; }
@@ -29,7 +30,7 @@ namespace InventoryDomain
             public int ReservedItems { get; set; }
         }
 
-        private class Product
+        public class Product
         {
             public Guid Id { get; set; }
             public List<Location> Locations { get; set; }
@@ -40,8 +41,23 @@ namespace InventoryDomain
             } 
         }
 
-        private Guid _tenant;
+        public Guid Tenant { get; internal set; }
         private readonly ConcurrentBag<Product> _inventory;
+
+        public IEnumerable<Product> GetProductLocations(Guid aProduct)
+        {
+            return from product in _inventory
+                where product.Id == aProduct
+                select product;
+        }
+
+        public IEnumerable<Product> GetProductsInLocation(Guid aLocation)
+        {
+            return (from product in _inventory
+                from location in product.Locations
+                where location.Id == aLocation
+                select product).Distinct();
+        }
 
         public InventoryAggregate()
         {
@@ -60,7 +76,7 @@ namespace InventoryDomain
 
         public void Apply(InventoryCenterCreated e)
         {
-            _tenant = e.Tenant;
+            Tenant = e.Tenant;
         }
 
         public IEnumerable Handle(AddItemToInventory c)

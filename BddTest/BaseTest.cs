@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using NUnit.Framework;
+using NUnit.Framework.Internal.Commands;
 using Objects;
 
 namespace BddTest
@@ -126,11 +128,21 @@ namespace BddTest
 
             if (handler == null)
             {
-                throw new CommandHandlerNotDefinedException(
-                    $"Aggregate {_sut.GetType().Name} does not yet handle command {c.GetType().Name}");
+                var subscriber = _sut as ISubscribeTo<TCommand>;
+                if (subscriber == null)
+                {
+                    throw new CommandHandlerNotDefinedException(
+                        $"Aggregate {_sut.GetType().Name} does not yet handle command {c.GetType().Name}");
+                }
+                else
+                {
+                    return subscriber.HandleExternalEvent(c);
+                }
             }
-
-            return handler.Handle(c);
+            else
+            {
+                return handler.Handle(c);
+            }
         }
 
         private static TAggregate ApplyEvents(TAggregate agg, IEnumerable events)
@@ -141,11 +153,7 @@ namespace BddTest
 
         private string Serialize(object o)
         {
-            var ser = new XmlSerializer(o.GetType());
-            var ms = new MemoryStream();
-            ser.Serialize(ms, o);
-            ms.Seek(0, SeekOrigin.Begin);
-            return new StreamReader(ms).ReadToEnd();
+            return JsonConvert.SerializeObject(o);
         }
 
         private class CommandHandlerNotDefinedException : Exception

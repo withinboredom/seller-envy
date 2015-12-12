@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Objects;
 
 namespace Inventory
 {
     /// <summary>
     /// Creates a new inventory center for a tenant
     /// </summary>
-    public class CreateInventoryCenter
+    public class CreateInventoryCenter : ICommandEvent
     {
         /// <summary>
         /// The id of the center
@@ -48,7 +49,7 @@ namespace Inventory
     /// <summary>
     /// Adds a new item into inventory
     /// </summary>
-    public class AddItemToInventory
+    public class AddItemToInventory : ICommandEvent
     {
         /// <summary>
         /// The inventory center id
@@ -94,7 +95,7 @@ namespace Inventory
     /// <summary>
     /// Reserve an item in the inventory center
     /// </summary>
-    public class ReserveItem
+    public class ReserveItem : ICommandEvent
     {
         /// <summary>
         /// The inventory center id
@@ -120,7 +121,7 @@ namespace Inventory
     /// <summary>
     /// Remove a reserved item from inventory
     /// </summary>
-    public class RemoveItem
+    public class RemoveItem : ICommandEvent
     {
         /// <summary>
         /// The center's id
@@ -141,5 +142,108 @@ namespace Inventory
         /// Locations to remove
         /// </summary>
         public List<Guid> Locations { get; set; } 
+    }
+
+    /// <summary>
+    /// The types of locations
+    /// </summary>
+    public enum LocationType
+    {
+        /// <summary>
+        /// A Bin may contain any number of items
+        /// </summary>
+        Bin,
+
+        /// <summary>
+        /// A Slot can only contain a certain number of items
+        /// </summary>
+        Slot
+    }
+
+    /// <summary>
+    /// Describes a location
+    /// </summary>
+    public class DescribeLocation : ICommandEvent
+    {
+        /// <summary>
+        /// The id of the location
+        /// </summary>
+        public Guid Id { get; set; }
+
+        /// <summary>
+        /// The descriptive name of this location
+        /// </summary>
+        public string LocationName { get; set; }
+
+        /// <summary>
+        /// The type this location is
+        /// </summary>
+        public LocationType LocationType { get; set; }
+
+        /// <summary>
+        /// The tenant this location belongs to
+        /// </summary>
+        public Guid Tenant { get; set; }
+    }
+
+    /// <summary>
+    /// Increases the capacity of a location
+    /// </summary>
+    public class ChangeLocationCapacity : ICommandEvent {
+        /// <summary>
+        /// The location id
+        /// </summary>
+        public Guid Id { get; set; }
+
+        /// <summary>
+        /// The new capacity
+        /// </summary>
+        public uint ToCapacity { get; set; }
+    }
+
+    /// <summary>
+    /// Describes a product
+    /// </summary>
+    public class DescribeProduct : ICommandEvent
+    {
+        /// <summary>
+        /// The id of the product
+        /// </summary>
+        public Guid Id { get; set; }
+
+        /// <summary>
+        /// The title of the product
+        /// </summary>
+        public string Title { get; set; }
+
+        /// <summary>
+        /// The ways this item can be identified by
+        /// </summary>
+        public Dictionary<string, ProductIdType> ProductIds { get; set; }
+
+        /// <summary>
+        /// The tags to help categorize this product
+        /// </summary>
+        public List<string> Tags { get; set; }
+
+        /// <summary>
+        /// The urls for photos
+        /// </summary>
+        public Dictionary<Uri, string> PictureUrls { get; set; }
+
+        /// <summary>
+        /// The sku of the product
+        /// </summary>
+        public string Sku { get; set; }
+
+        /// <summary>
+        /// The category of the product
+        /// </summary>
+        public string ProductCategory { get; set; }
+
+        /// <summary>
+        /// The tenant this product belongs to
+        /// </summary>
+        public Guid Tenant { get; set; }
     }
 }
