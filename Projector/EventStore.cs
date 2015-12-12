@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.Concurrent;
 using System.Data.Common;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -15,18 +16,18 @@ using Objects;
 
 namespace Projector
 {
-    public class EventStoreStuff
+    public class EventProcessor : IProcessor
     {
         public string ConnectionString = "ConnectTo=tcp://admin:changeit@localhost:1113; HeartBeatTimeout=500";
         private readonly IEventStoreConnection _connection;
 
-        public EventStoreStuff()
+        public EventProcessor()
         {
             _connection = EventStoreConnection.Create(ConnectionString);
             _connection.ConnectAsync().Wait();
         }
 
-        public async Task SendCommand<TAggregate, TCommand>(TCommand command)
+        public async Task<bool> SendCommand<TAggregate, TCommand>(TCommand command)
             where TAggregate : Aggregate, new()
             where TCommand : ICommandEvent
         {
@@ -52,12 +53,15 @@ namespace Projector
 
                 await _connection.AppendToStreamAsync(command.Id.ToString(), agg.EventsLoaded - 1, data).ConfigureAwait(false);
             }
+
+            return true;
         }
 
         public async Task<TAggregate> GetAggregate<TAggregate>(Guid id)
             where TAggregate : Aggregate, new()
         {
             var agg = new TAggregate();
+            
 
             var eventsSlice = await
                    _connection.ReadStreamEventsForwardAsync(id.ToString(), 0, 100, true,
@@ -79,6 +83,15 @@ namespace Projector
             var sorted = (from ev in events
                           orderby ev.Key ascending
                           select ev.Value).ToList();
+
+            Debug.Assert(agg != null, "Aggregate cannot be null");
+
+            var require = agg as IRequire;
+
+            if (require != null)
+            {
+                await require.Initialize(this).ConfigureAwait(false);
+            }
 
             agg.ApplyEvents(sorted);
             return agg;

@@ -22,7 +22,7 @@ namespace ProjectorTests
         [Test]
         public void HereWeGo()
         {
-            var projector = new EventStoreStuff();
+            var projector = new EventProcessor();
             var id = Guid.NewGuid();
             var tenant = Guid.NewGuid();
             projector.SendCommand<InventoryAggregate, CreateInventoryCenter>(new CreateInventoryCenter

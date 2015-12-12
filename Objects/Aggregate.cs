@@ -11,7 +11,7 @@ namespace Objects
     {
         public int EventsLoaded { get; private set; }
 
-        public Guid Id { get; internal set; }
+        public Guid Id { get; set; }
 
         public void ApplyEvents(IEnumerable events)
         {
