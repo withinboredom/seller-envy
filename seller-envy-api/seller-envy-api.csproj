@@ -75,6 +75,16 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Inventory\Inventory.csproj">
+      <Project>{23d2a189-6530-460f-a72d-1d493d02a72a}</Project>
+      <Name>Inventory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Projector\Projector.csproj">
+      <Project>{5b697369-72f1-46f5-ab41-23638bb971fd}</Project>
+      <Name>Projector</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

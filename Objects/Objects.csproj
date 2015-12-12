@@ -46,7 +46,6 @@
     <Compile Include="ICommandEvent.cs" />
     <Compile Include="IHandleCommand.cs" />
     <Compile Include="IProcessor.cs" />
-    <Compile Include="IRequire.cs" />
     <Compile Include="ISubscribeTo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -86,13 +86,6 @@ namespace Projector
 
             Debug.Assert(agg != null, "Aggregate cannot be null");
 
-            var require = agg as IRequire;
-
-            if (require != null)
-            {
-                await require.Initialize(this).ConfigureAwait(false);
-            }
-
             agg.ApplyEvents(sorted);
             return agg;
         }
