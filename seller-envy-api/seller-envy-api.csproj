@@ -54,7 +54,6 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\nancy-logo.png" />
     <Content Include="icon.png" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -84,6 +83,9 @@
       <Project>{5b697369-72f1-46f5-ab41-23638bb971fd}</Project>
       <Name>Projector</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Content\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
