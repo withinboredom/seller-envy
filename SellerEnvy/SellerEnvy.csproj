@@ -38,10 +38,55 @@
     <Content Include="scripts\ai.0.15.0-build58334.js" />
     <Content Include="scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="README.txt" />
+    <Content Include="src\api\content.js" />
     <Content Include="src\client.js" />
+    <Content Include="src\components\App\App.js" />
+    <Content Include="src\components\ContactPage\ContactPage.js" />
+    <Content Include="src\components\ContentPage\ContentPage.js" />
+    <Content Include="src\components\ErrorPage\ErrorPage.js" />
+    <Content Include="src\components\Feedback\Feedback.js" />
+    <Content Include="src\components\Footer\Footer.js" />
+    <Content Include="src\components\Header\Header.js" />
+    <Content Include="src\components\Header\logo-small%402x.png" />
+    <Content Include="src\components\Header\logo-small.png" />
+    <Content Include="src\components\Html\Html.js" />
+    <Content Include="src\components\Link\Link.js" />
+    <Content Include="src\components\LoginPage\LoginPage.js" />
+    <Content Include="src\components\Navigation\Navigation.js" />
+    <Content Include="src\components\NotFoundPage\NotFoundPage.js" />
+    <Content Include="src\components\RegisterPage\RegisterPage.js" />
+    <Content Include="src\components\TextBox\TextBox.js" />
     <Content Include="src\config.js" />
+    <Content Include="src\constants\ActionTypes.js" />
+    <Content Include="src\core\Dispatcher.js" />
+    <Content Include="src\core\DOMUtils.js" />
+    <Content Include="src\core\fetch\fetch.client.js" />
+    <Content Include="src\core\fetch\fetch.server.js" />
+    <Content Include="src\core\Location.js" />
+    <Content Include="src\decorators\withStyles.js" />
+    <Content Include="src\decorators\withViewport.js" />
+    <Content Include="src\public\apple-touch-icon.png" />
+    <Content Include="src\public\browserconfig.xml" />
+    <Content Include="src\public\crossdomain.xml" />
+    <Content Include="src\public\favicon.ico" />
+    <Content Include="src\public\humans.txt" />
+    <Content Include="src\public\robots.txt" />
+    <Content Include="src\public\tile-wide.png" />
+    <Content Include="src\public\tile.png" />
     <Content Include="src\routes.js" />
     <Content Include="src\server.js" />
+    <Content Include="tools\build.js" />
+    <Content Include="tools\bundle.js" />
+    <Content Include="tools\clean.js" />
+    <Content Include="tools\copy.js" />
+    <Content Include="tools\deploy.js" />
+    <Content Include="tools\lib\fetch.js" />
+    <Content Include="tools\lib\fs.js" />
+    <Content Include="tools\lib\watch.js" />
+    <Content Include="tools\run.js" />
+    <Content Include="tools\serve.js" />
+    <Content Include="tools\start.js" />
+    <Content Include="tools\webpack.config.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="test\" />
@@ -101,6 +146,80 @@
     <Content Include=".travis.yml" />
     <Content Include="package.json" />
     <Content Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\actions\.gitignore" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\components\variables.scss" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\components\App\App.scss" />
+    <Content Include="src\components\App\package.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\components\ContactPage\ContactPage.scss" />
+    <Content Include="src\components\ContactPage\package.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\components\ContentPage\ContentPage.scss" />
+    <Content Include="src\components\ContentPage\package.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\components\ErrorPage\ErrorPage.scss" />
+    <Content Include="src\components\ErrorPage\package.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\components\Feedback\Feedback.scss" />
+    <Content Include="src\components\Feedback\package.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\components\Footer\Footer.scss" />
+    <Content Include="src\components\Footer\package.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\components\Header\Header.scss" />
+    <Content Include="src\components\Header\package.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\components\Html\package.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\components\Link\package.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\components\LoginPage\LoginPage.scss" />
+    <Content Include="src\components\LoginPage\package.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\components\Navigation\Navigation.scss" />
+    <Content Include="src\components\Navigation\package.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\components\NotFoundPage\NotFoundPage.scss" />
+    <Content Include="src\components\NotFoundPage\package.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\components\RegisterPage\package.json" />
+    <Content Include="src\components\RegisterPage\RegisterPage.scss" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\components\TextBox\package.json" />
+    <Content Include="src\components\TextBox\TextBox.scss" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\content\about.jade" />
+    <Content Include="src\content\index.jade" />
+    <Content Include="src\content\privacy.jade" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\core\fetch\package.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\stores\.gitignore" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="tools\.eslintrc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
