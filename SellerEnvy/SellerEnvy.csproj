@@ -9,7 +9,7 @@
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <DebugType>full</DebugType>
     <DebugSymbols>true</DebugSymbols>
-    <TypeScriptToolsVersion>1.0</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>1.7</TypeScriptToolsVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -31,16 +31,17 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="build\**\*.*" />
-    <Content Include="config\**\*.*" />
+    <Content Include="config\karma.js" />
+    <Content Include="config\webpack.js" />
     <Content Include="docs\**\*.*" />
+    <Content Include="preprocessor.js" />
     <Content Include="scripts\ai.0.15.0-build58334.js" />
     <Content Include="scripts\ai.0.15.0-build58334.min.js" />
-    <Content Include="src\**\*.*" />
-    <Content Include=".editorconfig" />
-    <Content Include=".jshintrc" />
-    <Content Include="gulpfile.js" />
-    <Content Include="package.json" />
     <Content Include="README.txt" />
+    <Content Include="src\client.js" />
+    <Content Include="src\config.js" />
+    <Content Include="src\routes.js" />
+    <Content Include="src\server.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="test\" />
@@ -82,6 +83,24 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include=".gitignore" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include=".babelrc" />
+    <Content Include=".csscomb.json" />
+    <Content Include=".csslintrc" />
+    <Content Include=".editorconfig" />
+    <Content Include=".eslintrc" />
+    <Content Include=".flowconfig" />
+    <Content Include=".gitattributes" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include=".jscsrc" />
+    <Content Include=".travis.yml" />
+    <Content Include="package.json" />
+    <Content Include="README.md" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
